@@ -1,0 +1,62 @@
+/* Math Facts css stylesheet */
+
+.problem {
+    background-color: rgb(255, 255, 255);
+    /*box-shadow: rgb(136, 136, 136) -9px 0px 20px 0px;*/
+    width: 100px;
+    height: 150px;
+    border: 1px solid #333;
+    padding-right: 4px;
+    padding-bottom: 1px;
+    float: left;
+    margin: 4px;
+}
+
+.problem .factor1 {
+    padding-right: 5px;
+    padding-left: 5px;
+    line-height: 42px;
+    font-size: 40px;
+    text-align: right;
+    color: #000;
+
+}
+
+.problem .factor2 {
+    padding-right: 5px;
+    padding-left: 5px;
+    line-height: 42px;
+    font-size: 40px;
+    text-align: right;
+    color: #000;
+
+}
+
+.problem > img {
+    padding: 0px 5px 0px 5px;
+    width: 100%;
+    height: 3px;
+}
+
+.problem .answer {
+    height: 34px;
+    width: 80px;
+    font-size: 60px;
+    margin-right: 5px;
+    padding: 0px;
+    float: right;
+}
+
+.center {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+} 
+
+.correct {
+    background-color: rgb(0, 255, 0);
+}
+
+.incorrect {
+    background-color: rgb(255, 0, 0);
+}

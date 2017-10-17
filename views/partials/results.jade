@@ -1,0 +1,12 @@
+div
+    div.modal-header
+        | Results
+    div.modal-body
+        p
+            | Right: {{correct}}
+        p
+            | Wrong: {{problems.length - correct}}
+
+    div.modal-footer
+        button.btn.btn-primary(ng-click='newQuiz()') New Quiz
+        button.btn.btn-primary(ng-click='quit()') Quit

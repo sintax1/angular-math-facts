@@ -1,0 +1,84 @@
+.row.configuration(ng-if="testing==false")
+    .col-lg-12
+        p Welcome to Math Facts
+        h3 Create a Quiz
+        div.form-group
+            label(for='problemcount') How many problems?
+            input#problemcount.form-control(ng-model='form.problemcount', type='number', name='problemcount')
+        div.form-group
+            label(for='factor1low') First Factor Lowest:
+            input#factor1low.form-control(ng-model='form.factor1low', type='number', name='factor1low')
+            label(for='factor1high') First Factor Highest:
+            input#factor1high.form-control(ng-model="form.factor1high", type='number', name='factor1high')
+        div.form-group
+            label(for='factor2low') Second Factor Lowest:
+            input#factor2low.form-control(ng-model='form.factor2low', type='number', name='factor2low', placeholder='0')
+            label(for='factor2high') Second Factor Highest:
+            input#factor2high.form-control(ng-model='form.factor2high', type='number', name='factor2high', placeholder='12')
+        button.btn.btn-primary(ng-click='createQuiz()') Create Quiz
+        //-button.btn.btn-primary(type='submit') Create a Quiz
+
+.row(ng-if="testing")
+    .col-sm-2.col-sm-offset-5.text-center
+        | {{timer}} 
+
+.row.problems(ng-if="testing")
+    .col-lg-2
+        div.problem(ng-class="{'correct': problem.class == 'correct', 'incorrect': problem.class == 'incorrect'}", ng-repeat="problem in problems.slice(0, problems.length / 6)")
+            div.factor1
+                {{problem.factor1}}
+            div.factor2
+                | x&nbsp;&nbsp;{{problem.factor2}}
+            img(src="/images/flatLine.jpg")
+            div.answer
+                input#answer.form-control(focus, ng-disabled="finished == true", ng-model='problem.useranswer', type='number', name='answer')
+            
+    .col-lg-2
+        div.problem(ng-class="{'correct': problem.class == 'correct', 'incorrect': problem.class == 'incorrect'}", ng-repeat="problem in problems.slice(problems.length / 6, (problems.length / 6)*2)")
+            div.factor1
+                {{problem.factor1}}
+            div.factor2
+                | x&nbsp;&nbsp;{{problem.factor2}}
+            img(src="/images/flatLine.jpg")
+            div.answer
+                input#answer.form-control(focus, ng-disabled="finished == true", ng-model='problem.useranswer', type='number', name='answer')
+
+    .col-lg-2
+        div.problem(ng-class="{'correct': problem.class == 'correct', 'incorrect': problem.class == 'incorrect'}", ng-repeat="problem in problems.slice((problems.length/6)*2, (problems.length/6)*3)")
+            div.factor1
+                {{problem.factor1}}
+            div.factor2
+                | x&nbsp;&nbsp;{{problem.factor2}}
+            img(src="/images/flatLine.jpg")
+            div.answer
+                input#answer.form-control(focus, ng-disabled="finished == true", ng-model='problem.useranswer', type='number', name='answer')
+
+    .col-lg-2
+        div.problem(ng-class="{'correct': problem.class == 'correct', 'incorrect': problem.class == 'incorrect'}", ng-repeat="problem in problems.slice((problems.length/6)*3, (problems.length/6)*4)")
+            div.factor1
+                {{problem.factor1}}
+            div.factor2
+                | x&nbsp;&nbsp;{{problem.factor2}}
+            img(src="/images/flatLine.jpg")
+            div.answer
+                input#answer.form-control(focus, ng-disabled="finished == true", ng-model='problem.useranswer', type='number', name='answer')
+
+    .col-lg-2
+        div.problem(ng-class="{'correct': problem.class == 'correct', 'incorrect': problem.class == 'incorrect'}", ng-repeat="problem in problems.slice((problems.length/6)*4, (problems.length/6)*5)")
+            div.factor1
+                {{problem.factor1}}
+            div.factor2
+                | x&nbsp;&nbsp;{{problem.factor2}}
+            img(src="/images/flatLine.jpg")
+            div.answer
+                input#answer.form-control(focus, ng-disabled="finished == true", ng-model='problem.useranswer', type='number', name='answer')
+
+    .col-lg-2
+        div.problem(ng-class="{'correct': problem.class == 'correct', 'incorrect': problem.class == 'incorrect'}", ng-repeat="problem in problems.slice((problems.length/6)*5, problems.length)")
+            div.factor1
+                {{problem.factor1}}
+            div.factor2
+                | x&nbsp;&nbsp;{{problem.factor2}}
+            img(src="/images/flatLine.jpg")
+            div.answer
+                input#answer.form-control(focus, ng-disabled="finished == true", ng-model='problem.useranswer', type='number', name='answer')
