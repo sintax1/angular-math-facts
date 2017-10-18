@@ -12,19 +12,9 @@ function AppCtrl($scope, $http) {
   });
 };
 
-function navbarCtrl($scope, $route) {
-    $scope.newQuiz = function() {
-        $route.reload();
-    }
-}
-
 function ResultsModalCtrl($scope, $modalInstance, $window, $route) {
     $scope.ok = function() {
         $modalInstance.close();
-    }
-    $scope.newQuiz = function() {
-        $modalInstance.close();
-        $route.reload();
     }
 };
 
@@ -52,7 +42,7 @@ function ReadyModalCtrl($scope, $modalInstance, $timeout) {
     }
 };
 
-function QuizCtrl($scope, $http, $location, $timeout, $modal) {
+function QuizCtrl($scope, $http, $location, $timeout, $modal, $route) {
 
   $scope.testing = false;
   $scope.finished = false;
@@ -131,5 +121,10 @@ function QuizCtrl($scope, $http, $location, $timeout, $modal) {
     }
     tick();
   }
+
+  $scope.newQuiz = function() {
+      $route.reload();
+  }
+
 }
 

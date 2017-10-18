@@ -94,3 +94,9 @@
                 input#answer.form-control(focus, ng-disabled="finished == true", ng-model='problem.useranswer', type='number', name='answer')
             div.correct-answer(ng-if="finished == true && problem.answer != problem.useranswer")
                 | {{problem.answer}}
+
+.row(ng-if="finished == true")
+    .col-sm-2.col-sm-offset-5.text-center
+        p
+            br
+            button.btn.btn-primary(ng-click='newQuiz()') New Quiz
