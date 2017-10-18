@@ -19,7 +19,7 @@ function navbarCtrl($scope, $route) {
 }
 
 function ResultsModalCtrl($scope, $modalInstance, $window, $route) {
-    $scope.quit = function() {
+    $scope.ok = function() {
         $modalInstance.close();
     }
     $scope.newQuiz = function() {
