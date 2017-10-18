@@ -32,6 +32,8 @@
             img(src="/images/flatLine.jpg")
             div.answer
                 input#answer.form-control(focus, ng-disabled="finished == true", ng-model='problem.useranswer', type='number', name='answer')
+            div.correct-answer(ng-if="finished == true && problem.answer != problem.useranswer")
+                | {{problem.answer}}
             
     .col-lg-2
         div.problem(ng-class="{'correct': problem.class == 'correct', 'incorrect': problem.class == 'incorrect'}", ng-repeat="problem in problems.slice(problems.length / 6, (problems.length / 6)*2)")
@@ -42,6 +44,8 @@
             img(src="/images/flatLine.jpg")
             div.answer
                 input#answer.form-control(focus, ng-disabled="finished == true", ng-model='problem.useranswer', type='number', name='answer')
+            div.correct-answer(ng-if="finished == true && problem.answer != problem.useranswer")
+                | {{problem.answer}}
 
     .col-lg-2
         div.problem(ng-class="{'correct': problem.class == 'correct', 'incorrect': problem.class == 'incorrect'}", ng-repeat="problem in problems.slice((problems.length/6)*2, (problems.length/6)*3)")
@@ -52,6 +56,8 @@
             img(src="/images/flatLine.jpg")
             div.answer
                 input#answer.form-control(focus, ng-disabled="finished == true", ng-model='problem.useranswer', type='number', name='answer')
+            div.correct-answer(ng-if="finished == true && problem.answer != problem.useranswer")
+                | {{problem.answer}}
 
     .col-lg-2
         div.problem(ng-class="{'correct': problem.class == 'correct', 'incorrect': problem.class == 'incorrect'}", ng-repeat="problem in problems.slice((problems.length/6)*3, (problems.length/6)*4)")
@@ -62,6 +68,8 @@
             img(src="/images/flatLine.jpg")
             div.answer
                 input#answer.form-control(focus, ng-disabled="finished == true", ng-model='problem.useranswer', type='number', name='answer')
+            div.correct-answer(ng-if="finished == true && problem.answer != problem.useranswer")
+                | {{problem.answer}}
 
     .col-lg-2
         div.problem(ng-class="{'correct': problem.class == 'correct', 'incorrect': problem.class == 'incorrect'}", ng-repeat="problem in problems.slice((problems.length/6)*4, (problems.length/6)*5)")
@@ -72,6 +80,8 @@
             img(src="/images/flatLine.jpg")
             div.answer
                 input#answer.form-control(focus, ng-disabled="finished == true", ng-model='problem.useranswer', type='number', name='answer')
+            div.correct-answer(ng-if="finished == true && problem.answer != problem.useranswer")
+                | {{problem.answer}}
 
     .col-lg-2
         div.problem(ng-class="{'correct': problem.class == 'correct', 'incorrect': problem.class == 'incorrect'}", ng-repeat="problem in problems.slice((problems.length/6)*5, problems.length)")
@@ -82,3 +92,5 @@
             img(src="/images/flatLine.jpg")
             div.answer
                 input#answer.form-control(focus, ng-disabled="finished == true", ng-model='problem.useranswer', type='number', name='answer')
+            div.correct-answer(ng-if="finished == true && problem.answer != problem.useranswer")
+                | {{problem.answer}}
