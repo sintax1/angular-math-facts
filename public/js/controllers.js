@@ -12,17 +12,43 @@ function AppCtrl($scope, $http) {
   });
 };
 
+function navbarCtrl($scope, $route) {
+    $scope.newQuiz = function() {
+        $route.reload();
+    }
+}
+
 function ResultsModalCtrl($scope, $modalInstance, $window, $route) {
     $scope.quit = function() {
         $modalInstance.close();
     }
     $scope.newQuiz = function() {
         $modalInstance.close();
-        //$scope.testing = false;
-        //$scope.finished = false;
-        //$scope.timer = '00:00';
-        //$scope.correct = 0;
         $route.reload();
+    }
+};
+
+function ReadyModalCtrl($scope, $modalInstance, $timeout) {
+    $scope.message = 'Click <b>Start</b> when you are ready to begin.';
+
+    $scope.cancel = function() {
+        $modalInstance.close('cancel');
+    }
+
+    $scope.start = function() {
+        $scope.message = 'Ready...';
+
+        $timeout(function() {
+            $scope.message = 'Set...';
+
+            $timeout(function() {
+                $scope.message = 'Go!';
+
+                $timeout(function() {
+                    $modalInstance.close('start');
+                }, 1000);
+            }, 1000);
+        }, 1000);
     }
 };
 
@@ -46,18 +72,33 @@ function QuizCtrl($scope, $http, $location, $timeout, $modal) {
     $http.post('/api/quiz', $scope.form).
       success(function(data) {
         $scope.problems = data;
-        $scope.testing = true;
-        startTimer(3.6*$scope.form.problemcount);
+
+        var modalInstance = $modal.open({
+            templateUrl: 'partial/ready.jade',
+            controller: 'ReadyModalCtrl',
+            scope: $scope
+        });
+
+        modalInstance.result.then(function(reason) {
+            if(reason === 'start') {
+                $scope.testing = true;
+
+                $timeout(function() {
+                    $('.answer').find('input')[0].focus();
+                    $scope.startTimer(3.6*$scope.form.problemcount);
+                }, 0);
+            }
+        });
+
       });
   };
 
-  var checkAnswer = function() {
+  $scope.checkAnswer = function() {
     angular.forEach($scope.problems, function( problem ){
         if(problem.answer == problem.useranswer) {
             problem.class = 'correct';
             $scope.correct++;
         } else {
-            console.log("Wrong: " + problem);
             problem.class = 'incorrect';
         }
     });
@@ -69,12 +110,10 @@ function QuizCtrl($scope, $http, $location, $timeout, $modal) {
     });
   }
 
-  function startTimer(duration) {
-    console.log("Timer started");
+  $scope.startTimer = function(duration) {
     var timer = duration, minutes, seconds;
 
     var tick = function() {
-        console.log(minutes + ":" + seconds);
         minutes = parseInt(timer / 60, 10)
         seconds = parseInt(timer % 60, 10);
 
@@ -85,7 +124,7 @@ function QuizCtrl($scope, $http, $location, $timeout, $modal) {
 
         if (--timer < 0) {
             $scope.finished = true;
-            checkAnswer();
+            $scope.checkAnswer();
             return;
         }
         $timeout(tick, 1000);

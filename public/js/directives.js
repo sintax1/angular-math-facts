@@ -18,15 +18,23 @@ angular.module('myApp.directives', [])
           var code = e.keyCode || e.which;
           if (code === 13) {
             e.preventDefault();
-            if(elem[0].parentElement.parentElement.nextElementSibling == null) {
-                if(elem[0].parentElement.parentElement.parentElement.nextElementSibling == null) {
-                    document.querySelector('[name=problems]').querySelectorAll('input')[0].focus();
-                } else {
-                    elem[0].parentElement.parentElement.parentElement.nextElementSibling.querySelector('input').focus();
+
+            var getNextInput = function(thisInput) {
+                var column = $(thisInput.parentElement.parentElement.parentElement)
+                var nextInput = $(thisInput.parentElement.parentElement).next().find('input');
+                    
+                while (nextInput.length <= 0) {
+                    if(column.index() >= column.siblings().length) {
+                        return $('input').first();
+                    }
+                    column = column.next();
+                    nextInput = column.find('input').first();
                 }
-            } else {
-                elem[0].parentElement.parentElement.nextElementSibling.querySelector('input').focus();
+
+                return nextInput.first();
             }
+
+            getNextInput(elem[0]).focus();
           }
         });
       }
